@@ -1,11 +1,16 @@
+import { Routes, Route} from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
-
   return (
-    <>
-      <h1>Curas</h1>
-    </>
-  )
+    <div>
+      <Routes>
+        <Route path="/Home" element={<Home />} />
+        <Route path="/About" element={<About />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
