@@ -1,7 +1,7 @@
 import BubbleMenu from '../components/ui/BubbleMenu'
 import ScrollStack, { ScrollStackItem } from '../components/ui/ScrollStack'
 import DotGrid from '../components/ui/DotGrid';
-import Globe from '../components/magicui/globe';
+import { Globe } from '../components/magicui/globe';
 
 const items = [
     {
@@ -57,8 +57,9 @@ export default function Home() {
                     returnDuration={1.5}
                 />
             </div>
-
-            <Globe />
+            <div style={{ height: '20vh' }}>
+                <Globe /> 
+            </div>
 
             <BubbleMenu
                 logo={<span style={{ fontWeight: 700 }}>RB</span>}
