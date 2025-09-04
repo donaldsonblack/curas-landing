@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 
 type MenuItem = {
@@ -31,38 +32,17 @@ export type BubbleMenuProps = {
 const DEFAULT_ITEMS: MenuItem[] = [
   {
     label: "home",
-    href: "#",
+    href: "/",
     ariaLabel: "Home",
     rotation: -8,
     hoverStyles: { bgColor: "#3b82f6", textColor: "#ffffff" },
   },
   {
     label: "about",
-    href: "#",
+    href: "/about",
     ariaLabel: "About",
     rotation: 8,
     hoverStyles: { bgColor: "#10b981", textColor: "#ffffff" },
-  },
-  {
-    label: "projects",
-    href: "#",
-    ariaLabel: "Documentation",
-    rotation: 8,
-    hoverStyles: { bgColor: "#f59e0b", textColor: "#ffffff" },
-  },
-  {
-    label: "blog",
-    href: "#",
-    ariaLabel: "Blog",
-    rotation: 8,
-    hoverStyles: { bgColor: "#ef4444", textColor: "#ffffff" },
-  },
-  {
-    label: "contact",
-    href: "#",
-    ariaLabel: "Contact",
-    rotation: -8,
-    hoverStyles: { bgColor: "#8b5cf6", textColor: "#ffffff" },
   },
 ];
 
@@ -367,9 +347,9 @@ export default function BubbleMenu({
                   "box-border",
                 ].join(" ")}
               >
-                <a
+                <Link
+                  to={item.href}
                   role="menuitem"
-                  href={item.href}
                   aria-label={item.ariaLabel || item.label}
                   className={[
                     "pill-link",
@@ -421,7 +401,7 @@ export default function BubbleMenu({
                   >
                     {item.label}
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

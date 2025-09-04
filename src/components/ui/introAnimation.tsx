@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const IntroAnimation = ({ children }: { children: React.ReactNode }) => {
+const IntroAnimation = ({ children, onAnimationComplete }: { children: React.ReactNode, onAnimationComplete: () => void }) => {
   const [isAnimationDone, setAnimationDone] = useState(false);
   const [isFading, setIsFading] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -22,6 +22,7 @@ const IntroAnimation = ({ children }: { children: React.ReactNode }) => {
               setIsFading(true);
               setTimeout(() => {
                 setAnimationDone(true);
+                onAnimationComplete();
               }, 1000); // Match CSS transition duration
               iframe.contentWindow.removeEventListener('scroll', handleScroll);
             }
@@ -39,6 +40,7 @@ const IntroAnimation = ({ children }: { children: React.ReactNode }) => {
             setIsFading(true);
             setTimeout(() => {
                 setAnimationDone(true);
+              onAnimationComplete();
             }, 1000);
         }, 3000);
       }
