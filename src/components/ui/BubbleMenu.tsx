@@ -35,14 +35,21 @@ const DEFAULT_ITEMS: MenuItem[] = [
     href: "/",
     ariaLabel: "Home",
     rotation: -8,
-    hoverStyles: { bgColor: "#3b82f6", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "var(--primary)", textColor: "var(--primary-foreground)" },
   },
   {
     label: "about",
     href: "/about",
     ariaLabel: "About",
     rotation: 8,
-    hoverStyles: { bgColor: "#10b981", textColor: "#ffffff" },
+    hoverStyles: { bgColor: "var(--primary)", textColor: "var(--primary-foreground)" },
+  },
+  {
+    label: "contact",
+    href: "/contact",
+    ariaLabel: "Contact",
+    rotation: -7,
+    hoverStyles: { bgColor: "var(--primary)", textColor: "var(--primary-foreground)" },
   },
 ];
 
@@ -52,8 +59,6 @@ export default function BubbleMenu({
   className,
   style,
   menuAriaLabel = "Toggle menu",
-  menuBg = "#fff",
-  menuContentColor = "#111",
   useFixedPosition = false,
   items,
   animationEase = "back.out(1.5)",
@@ -228,8 +233,8 @@ export default function BubbleMenu({
             "bubble logo-bubble",
             "inline-flex items-center justify-center",
             "rounded-full",
-            "bg-white",
-            "shadow-[0_4px_16px_rgba(0,0,0,0.12)]",
+            "bg-card",
+            "shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
             "pointer-events-auto",
             "h-12 md:h-14",
             "px-4 md:px-8",
@@ -238,7 +243,7 @@ export default function BubbleMenu({
           ].join(" ")}
           aria-label="Logo"
           style={{
-            background: menuBg,
+            background: "var(--card)",
             minHeight: "48px",
             borderRadius: "9999px",
           }}
@@ -275,8 +280,8 @@ export default function BubbleMenu({
             isMenuOpen ? "open" : "",
             "inline-flex flex-col items-center justify-center",
             "rounded-full",
-            "bg-white",
-            "shadow-[0_4px_16px_rgba(0,0,0,0.12)]",
+            "bg-card",
+            "shadow-[0_4px_16px_rgba(0,0,0,0.4)]",
             "pointer-events-auto",
             "w-12 h-12 md:w-14 md:h-14",
             "border-0 cursor-pointer p-0",
@@ -285,14 +290,14 @@ export default function BubbleMenu({
           onClick={handleToggle}
           aria-label={menuAriaLabel}
           aria-pressed={isMenuOpen}
-          style={{ background: menuBg }}
+          style={{ background: "var(--card)" }}
         >
           <span
             className="menu-line block mx-auto rounded-[2px]"
             style={{
               width: 26,
               height: 2,
-              background: menuContentColor,
+              background: "var(--card-foreground)",
               transform: isMenuOpen ? "translateY(4px) rotate(45deg)" : "none",
             }}
           />
@@ -302,7 +307,7 @@ export default function BubbleMenu({
               marginTop: "6px",
               width: 26,
               height: 2,
-              background: menuContentColor,
+              background: "var(--card-foreground)",
               transform: isMenuOpen
                 ? "translateY(-4px) rotate(-45deg)"
                 : "none",
@@ -356,9 +361,9 @@ export default function BubbleMenu({
                     "w-full",
                     "rounded-[999px]",
                     "no-underline",
-                    "bg-white",
+                    "bg-card",
                     "text-inherit",
-                    "shadow-[0_4px_14px_rgba(0,0,0,0.10)]",
+                    "shadow-[0_4px_14px_rgba(0,0,0,0.4)]",
                     "flex items-center justify-center",
                     "relative",
                     "transition-[background,color] duration-300 ease-in-out",
@@ -368,11 +373,11 @@ export default function BubbleMenu({
                   style={
                     {
                       ["--item-rot"]: `${item.rotation ?? 0}deg`,
-                      ["--pill-bg"]: menuBg,
-                      ["--pill-color"]: menuContentColor,
-                      ["--hover-bg"]: item.hoverStyles?.bgColor || "#f3f4f6",
+                      ["--pill-bg"]: "var(--card)",
+                      ["--pill-color"]: "var(--card-foreground)",
+                      ["--hover-bg"]: item.hoverStyles?.bgColor || "var(--primary)",
                       ["--hover-color"]:
-                        item.hoverStyles?.textColor || menuContentColor,
+                        item.hoverStyles?.textColor || "var(--primary-foreground)",
                       background: "var(--pill-bg)",
                       color: "var(--pill-color)",
                       minHeight: "var(--pill-min-h, 160px)",

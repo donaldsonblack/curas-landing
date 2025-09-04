@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
-const IntroAnimation = ({ children, onAnimationComplete }: { children: React.ReactNode, onAnimationComplete: () => void }) => {
-  const [isAnimationDone, setAnimationDone] = useState(false);
-  const [isFading, setIsFading] = useState(false);
+const IntroAnimation = ({ onAnimationComplete }: { onAnimationComplete: () => void }) => {
+    const [isFading, setIsFading] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ const IntroAnimation = ({ children, onAnimationComplete }: { children: React.Rea
             if (scrollY + innerHeight >= scrollHeight - 10) { // 10px buffer
               setIsFading(true);
               setTimeout(() => {
-                setAnimationDone(true);
                 onAnimationComplete();
               }, 1000); // Match CSS transition duration
               iframe.contentWindow.removeEventListener('scroll', handleScroll);
@@ -39,8 +37,7 @@ const IntroAnimation = ({ children, onAnimationComplete }: { children: React.Rea
         setTimeout(() => {
             setIsFading(true);
             setTimeout(() => {
-                setAnimationDone(true);
-              onAnimationComplete();
+                onAnimationComplete();
             }, 1000);
         }, 3000);
       }
@@ -53,10 +50,7 @@ const IntroAnimation = ({ children, onAnimationComplete }: { children: React.Rea
     };
   }, []);
 
-  if (isAnimationDone) {
-    return <>{children}</>;
-  }
-
+  
   return (
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 9999 }}>
       <iframe

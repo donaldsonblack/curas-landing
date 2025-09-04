@@ -1,11 +1,9 @@
 
-import IntroAnimation from "../components/ui/introAnimation";
-import TextAnimation from "../components/ui/textAnimation"; 
-
-export default function Home({ onAnimationComplete }: { onAnimationComplete: () => void }) {
+export default function Home() {
     return (
-        <IntroAnimation onAnimationComplete={onAnimationComplete}>
-           <TextAnimation />
-        </IntroAnimation>
+        <div>
+            {/* The main content of the home page will go here */}
+            <h1>Welcome to the Home Page</h1>
+        </div>
     );
 }
